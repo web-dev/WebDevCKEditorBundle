@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="ckeditor.instance_manager"
+            class="WebDev\CKEditorBundle\CKEditor\InstanceManager">
+        </service>
+        <service id="ckeditor.instance_injector"
+            class="WebDev\CKEditorBundle\EventListener\CKEditorListener">
+            <tag name="kernel.event_listener" event="kernel.response"
+                method="onKernelResponse" priority="-128" />
+            <argument type="service" id="templating.engine.twig" />
+            <argument type="service" id="ckeditor.instance_manager" />
+        </service>
+    </services>
+</container>

@@ -1,0 +1,9 @@
+<script src="{{ asset('bundles/ckeditor/ckeditor.js') }}"></script>
+<script>
+{% for instance in instances -%}
+    CKEDITOR.basePath = {{ asset('bundles/ckeditor/')|json_encode|raw }};
+    CKEDITOR.replace({{ instance.id|json_encode|raw }},{
+        toolbar: {{ instance.toolbar|json_encode|raw}}
+    });
+{% endfor -%}
+</script>
